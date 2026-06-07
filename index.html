@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cô giáo Nguyễn Thị Thìn – Trường TH Địch Quả</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="nav-icon">🌸</span>
+        <div>
+          <div class="nav-name">Cô Thìn</div>
+          <div class="nav-school">TH Địch Quả</div>
+        </div>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active" data-section="home">Trang chủ</a>
+        <a href="#lessons" class="nav-link" data-section="lessons">Bài giảng</a>
+        <a href="#gallery" class="nav-link" data-section="gallery">Thư viện ảnh</a>
+        <a href="#announcements" class="nav-link" data-section="announcements">Thông báo</a>
+        <a href="#contact" class="nav-link" data-section="contact">Liên hệ</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="hero-circles">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div class="circle c4"></div>
+      </div>
+      <div class="floating-icons">
+        <span class="fi fi1">📚</span>
+        <span class="fi fi2">✏️</span>
+        <span class="fi fi3">🔢</span>
+        <span class="fi fi4">🌟</span>
+        <span class="fi fi5">🎈</span>
+        <span class="fi fi6">🍎</span>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-avatar-wrap">
+        <div class="hero-avatar-ring">
+          <img class="hero-avatar" id="heroAvatar" src="https://api.dicebear.com/7.x/notionists/svg?seed=thin&backgroundColor=fef3c7" alt="Cô Thìn" />
+        </div>
+        <div class="hero-badge">👩‍🏫 Giáo viên</div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-subtitle" id="heroSubtitle">Trường Tiểu học Địch Quả</p>
+        <h1 class="hero-title" id="heroTitle">Cô Nguyễn<br/><span>Thị Thìn</span></h1>
+        <p class="hero-motto" id="heroMotto">"Mỗi đứa trẻ là một tài năng đang chờ được khám phá"</p>
+        <div class="hero-tags">
+          <span class="tag tag-math">📐 Toán học</span>
+          <span class="tag tag-viet">📖 Tiếng Việt</span>
+          <span class="tag tag-grade">Lớp 4 &amp; 5</span>
+        </div>
+        <div class="hero-stats" id="heroStats">
+          <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Năm kinh nghiệm</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">9</span><span class="stat-label">Bài giảng</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Môn học</span></div>
+        </div>
+        <div class="hero-cta">
+          <a href="#lessons" class="btn btn-primary">📚 Xem bài giảng</a>
+          <a href="#contact" class="btn btn-outline">💬 Liên hệ Zalo</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Cuộn xuống để khám phá</span>
+      <div class="scroll-arrow">↓</div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section-pad">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-card" id="aboutCard">
+          <div class="about-card-header">
+            <span class="about-icon">👩‍🏫</span>
+            <h2>Giới thiệu bản thân</h2>
+          </div>
+          <p class="about-bio" id="aboutBio"></p>
+          <div class="about-info" id="aboutInfo"></div>
+        </div>
+        <div class="about-values">
+          <div class="value-item">
+            <div class="value-icon">❤️</div>
+            <div><h4>Tận tâm</h4><p>Yêu nghề, yêu trẻ – mỗi giờ lên lớp là một niềm vui</p></div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💡</div>
+            <div><h4>Sáng tạo</h4><p>Đổi mới phương pháp dạy học, tạo hứng thú học tập</p></div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <div><h4>Gần gũi</h4><p>Lắng nghe và đồng hành cùng học sinh, phụ huynh</p></div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🏅</div>
+            <div><h4>Trách nhiệm</h4><p>Luôn nêu gương sáng, xây dựng nhân cách cho học trò</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LESSONS ===== -->
+  <section id="lessons" class="lessons section-pad">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">📚 Bài Giảng</h2>
+        <p class="section-sub">Tài liệu học tập Toán và Tiếng Việt lớp 4, 5</p>
+      </div>
+      <div class="lesson-filters">
+        <button class="filter-btn active" data-filter="all">Tất cả</button>
+        <button class="filter-btn" data-filter="Toán">📐 Toán</button>
+        <button class="filter-btn" data-filter="Tiếng Việt">📖 Tiếng Việt</button>
+        <button class="filter-btn" data-filter="Lớp 4">Lớp 4</button>
+        <button class="filter-btn" data-filter="Lớp 5">Lớp 5</button>
+      </div>
+      <div class="lessons-grid" id="lessonsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery" class="gallery section-pad">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">📸 Thư Viện Ảnh</h2>
+        <p class="section-sub">Những khoảnh khắc đáng nhớ tại lớp học</p>
+      </div>
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-gfilter="all">Tất cả</button>
+        <button class="filter-btn" data-gfilter="Học tập">📚 Học tập</button>
+        <button class="filter-btn" data-gfilter="Hoạt động">🎉 Hoạt động</button>
+        <button class="filter-btn" data-gfilter="Sự kiện">🏆 Sự kiện</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <button class="lightbox-close" id="lightboxClose">✕</button>
+      <button class="lightbox-prev" id="lightboxPrev">‹</button>
+      <button class="lightbox-next" id="lightboxNext">›</button>
+      <div class="lightbox-inner">
+        <img id="lightboxImg" src="" alt="" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ANNOUNCEMENTS ===== -->
+  <section id="announcements" class="announcements section-pad">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">📢 Thông Báo &amp; Lịch Học</h2>
+        <p class="section-sub">Cập nhật thông tin lớp học mới nhất</p>
+      </div>
+      <div class="announce-layout">
+        <div class="announce-list" id="announceList"></div>
+        <div class="schedule-box">
+          <h3 class="schedule-title">🗓️ Lịch Dạy Hàng Tuần</h3>
+          <div class="schedule-table" id="scheduleTable"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact section-pad">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">💬 Liên Hệ</h2>
+        <p class="section-sub">Kết nối với cô Thìn qua Zalo hoặc để lại lời nhắn</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <div class="contact-avatar-wrap">
+              <img src="https://api.dicebear.com/7.x/notionists/svg?seed=thin&backgroundColor=fef3c7" alt="Cô Thìn" class="contact-avatar" />
+            </div>
+            <div>
+              <h3>Cô Nguyễn Thị Thìn</h3>
+              <p>Giáo viên Tiểu học</p>
+            </div>
+          </div>
+          <div class="contact-items">
+            <div class="contact-item">
+              <span class="ci-icon">🏫</span>
+              <div>
+                <div class="ci-label">Đơn vị công tác</div>
+                <div class="ci-val">Trường Tiểu học Địch Quả<br/>Huyện Thanh Sơn, Tỉnh Phú Thọ</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon">📱</span>
+              <div>
+                <div class="ci-label">Zalo</div>
+                <div class="ci-val"><strong>0388 918 131</strong></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="ci-icon">⏰</span>
+              <div>
+                <div class="ci-label">Giờ liên hệ</div>
+                <div class="ci-val">Thứ 2 – Thứ 6: 7:00 – 17:00</div>
+              </div>
+            </div>
+          </div>
+          <a class="btn-zalo" href="https://zalo.me/0388918131" target="_blank" rel="noopener">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" width="28" height="28" />
+            Nhắn tin Zalo ngay
+          </a>
+        </div>
+        <div class="contact-form-card">
+          <h3>✉️ Gửi lời nhắn</h3>
+          <div class="form-group">
+            <label>Họ và tên</label>
+            <input type="text" id="formName" placeholder="Nguyễn Văn A (Phụ huynh em...)" />
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại</label>
+            <input type="tel" id="formPhone" placeholder="09xxxxxxxx" />
+          </div>
+          <div class="form-group">
+            <label>Nội dung</label>
+            <textarea id="formMsg" rows="4" placeholder="Nhập nội dung muốn trao đổi với cô..."></textarea>
+          </div>
+          <button class="btn btn-primary full-w" id="sendBtn" onclick="submitForm()">
+            📨 Gửi qua Zalo
+          </button>
+          <div class="form-note">
+            * Nhấn gửi sẽ mở Zalo với nội dung đã điền sẵn
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span>🌸</span>
+          <div>
+            <div class="footer-name">Cô Nguyễn Thị Thìn</div>
+            <div class="footer-school">Trường Tiểu học Địch Quả – Thanh Sơn – Phú Thọ</div>
+          </div>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Trang chủ</a>
+          <a href="#lessons">Bài giảng</a>
+          <a href="#gallery">Ảnh</a>
+          <a href="#announcements">Thông báo</a>
+          <a href="#contact">Liên hệ</a>
+        </div>
+      </div>
+      <div class="footer-copy">© 2025 – Website dành riêng cho cô giáo Thìn ❤️ Được tạo với yêu thương</div>
+    </div>
+  </footer>
+
+  <!-- Lesson Modal -->
+  <div class="modal-overlay" id="lessonModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="backToTop" title="Lên đầu trang">↑</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
