@@ -1,337 +1,38 @@
-// ===========================
-//  APP.JS – Website Cô Thìn
-// ===========================
+let appData=null,lightboxVisible=[],lightboxIndex=0;
+async function loadData(){try{const r=await fetch('data.json');appData=await r.json();init();}catch(e){console.error(e);}}
+function init(){renderHero();renderAbout();renderPosts(appData.posts);renderLessons(appData.lessons);renderGallery(appData.gallery);renderAnnouncements();renderSchedule();setupNavbar();setupPostFilters();setupLessonFilters();setupGalleryFilters();setupLightbox();setupLessonModal();setupPostModal();setupBackToTop();setupNavToggle();setupScrollSpy();}
 
-let appData = null;
-let currentGallery = [];
-let lightboxIndex = 0;
+function renderHero(){const t=appData.teacher;document.getElementById('heroSubtitle').textContent=t.school;document.getElementById('heroMotto').textContent=t.motto;document.getElementById('heroAvatar').src=t.avatar;document.getElementById('statPosts').textContent=appData.posts.length;}
 
-// ---- Load JSON data ----
-async function loadData() {
-  try {
-    const res = await fetch('data.json');
-    appData = await res.json();
-    init();
-  } catch (e) {
-    console.error('Không tải được data.json:', e);
-  }
-}
+function renderAbout(){const t=appData.teacher;document.getElementById('aboutBio').textContent=t.bio;document.getElementById('aboutInfo').innerHTML=`<div class="info-row"><span class="info-icon">🎂</span><div><div class="info-label">Ngày sinh</div><div class="info-val">${t.dob}</div></div></div><div class="info-row"><span class="info-icon">🏫</span><div><div class="info-label">Đơn vị</div><div class="info-val">${t.school}</div></div></div><div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">Địa chỉ</div><div class="info-val">${t.district}</div></div></div><div class="info-row"><span class="info-icon">📚</span><div><div class="info-label">Môn dạy</div><div class="info-val">${t.subjects.join(', ')} – ${t.grades.join(', ')}</div></div></div><div class="info-row"><span class="info-icon">⭐</span><div><div class="info-label">Kinh nghiệm</div><div class="info-val">${t.experience}</div></div></div>`;}
 
-function init() {
-  renderHero();
-  renderAbout();
-  renderLessons(appData.lessons);
-  renderGallery(appData.gallery);
-  renderAnnouncements();
-  renderSchedule();
-  setupNavbar();
-  setupFilters();
-  setupGalleryFilters();
-  setupLightbox();
-  setupModal();
-  setupBackToTop();
-  setupNavToggle();
-  setupScrollSpy();
-}
+function catClass(c){return c==='Giáo án'?'giaoan':c==='Chia sẻ'?'chiase':'thongbao';}
+function renderPosts(posts){const g=document.getElementById('postsGrid');g.innerHTML=posts.map(p=>postCardHTML(p)).join('');g.querySelectorAll('.post-card').forEach(c=>c.addEventListener('click',()=>openPostModal(appData.posts.find(p=>p.id==c.dataset.id))));}
+function postCardHTML(p){const cc=catClass(p.category);const d=new Date(p.date).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});const tags=(p.tags||[]).slice(0,3);return `<div class="post-card" data-id="${p.id}" data-pcat="${p.category}"><div class="post-card-top"><div class="post-thumb cat-${cc}">${p.thumbnail}</div><div class="post-meta"><span class="post-category-badge badge-${cc}">${p.category}</span><br/><span class="post-date">📅 ${d}</span></div></div><div class="post-card-body"><div class="post-title">${p.title}</div><div class="post-summary">${p.summary}</div></div><div class="post-card-footer"><div class="post-tags">${tags.map(t=>`<span class="post-tag">${t}</span>`).join('')}</div><span class="post-read-more">Đọc tiếp →</span></div></div>`;}
+function setupPostFilters(){document.querySelectorAll('[data-pfilter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-pfilter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.pfilter;document.querySelectorAll('.post-card').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.pcat!==f));}));}
+function openPostModal(p){const cc=catClass(p.category);const d=new Date(p.date).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});const cm={giaoan:'var(--amber-dark)',chiase:'var(--green)',thongbao:'var(--sky)'};document.getElementById('postModalContent').innerHTML=`<div class="post-modal-header"><div class="post-modal-category" style="color:${cm[cc]}">${p.thumbnail} ${p.category}</div><div class="post-modal-title">${p.title}</div><div class="post-modal-meta"><span>📅 ${d}</span><span>✍️ ${p.author}</span>${p.grade!=='Tất cả'?`<span>🎓 ${p.grade}</span>`:''} ${p.subject!=='Tất cả'?`<span>📚 ${p.subject}</span>`:''}</div></div><div class="post-modal-divider"></div><div class="post-modal-content">${p.content}</div><div class="post-modal-tags">${(p.tags||[]).map(t=>`<span class="modal-tag">${t}</span>`).join('')}</div><div style="margin-top:24px;padding:16px;background:var(--cream);border-radius:var(--radius-sm);border:1px solid var(--border);"><p style="font-size:.85rem;color:var(--text-light);">💬 Thắc mắc liên hệ cô Thìn qua Zalo <strong>0388 918 131</strong></p></div>`;document.getElementById('postModal').classList.add('open');document.body.style.overflow='hidden';}
+function setupPostModal(){const m=document.getElementById('postModal');document.getElementById('postModalClose').addEventListener('click',()=>{m.classList.remove('open');document.body.style.overflow='';});m.addEventListener('click',e=>{if(e.target===m){m.classList.remove('open');document.body.style.overflow='';}});}
 
-// ---- HERO ----
-function renderHero() {
-  const t = appData.teacher;
-  document.getElementById('heroTitle').innerHTML =
-    t.name.split(' ').slice(0, -1).join(' ') + '<br/><span>' + t.name.split(' ').slice(-1)[0] + '</span>';
-  document.getElementById('heroSubtitle').textContent = t.school;
-  document.getElementById('heroMotto').textContent = t.motto;
-  document.getElementById('heroAvatar').src = t.avatar;
-  document.getElementById('heroAvatar').alt = t.name;
-}
+function renderLessons(lessons){const g=document.getElementById('lessonsGrid');g.innerHTML=lessons.map(l=>lessonCardHTML(l)).join('');g.querySelectorAll('.lesson-card').forEach(c=>c.addEventListener('click',()=>openLessonModal(appData.lessons.find(l=>l.id==c.dataset.id))));}
+function lessonCardHTML(l){const im=l.subject==='Toán';const ia=l.level==='Nâng cao';return `<div class="lesson-card" data-id="${l.id}" data-subject="${l.subject}" data-grade="${l.grade}"><div class="lesson-top"><div class="lesson-icon-wrap ${im?'subject-math':'subject-viet'}">${l.icon}</div><div class="lesson-meta"><div class="lesson-subject ${im?'math':'viet'}">${l.subject}</div><span class="lesson-grade">${l.grade}</span></div></div><div class="lesson-title">${l.title}</div><div class="lesson-desc">${l.description}</div><div class="lesson-footer"><div class="lesson-tags">${l.topics.slice(0,2).map(t=>`<span class="lesson-tag">${t}</span>`).join('')}</div><span class="lesson-level ${ia?'level-advanced':'level-basic'}">${l.level}</span></div><div class="lesson-view-more">Xem chi tiết →</div></div>`;}
+function setupLessonFilters(){document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;document.querySelectorAll('.lesson-card').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.subject!==f&&c.dataset.grade!==f));}));}
+function openLessonModal(l){const im=l.subject==='Toán';document.getElementById('modalContent').innerHTML=`<div class="modal-subject" style="color:${im?'var(--amber-dark)':'var(--green)'}">${l.icon} ${l.subject}</div><div class="modal-title">${l.title}</div><div class="modal-tags"><span class="modal-tag">${l.grade}</span><span class="modal-tag">⏱ ${l.duration}</span><span class="modal-tag">${l.level}</span></div><p class="modal-desc">${l.description}</p><div class="modal-topics"><h4>📌 Nội dung chính</h4><ul>${l.topics.map(t=>`<li>${t}</li>`).join('')}</ul></div><div style="margin-top:20px;padding:16px;background:var(--cream);border-radius:var(--radius-sm);border:1px solid var(--border);"><p style="font-size:.85rem;color:var(--text-light);">💬 Liên hệ cô Thìn qua Zalo <strong>0388 918 131</strong> để nhận tài liệu.</p></div>`;document.getElementById('lessonModal').classList.add('open');document.body.style.overflow='hidden';}
+function setupLessonModal(){const m=document.getElementById('lessonModal');document.getElementById('modalClose').addEventListener('click',()=>{m.classList.remove('open');document.body.style.overflow='';});m.addEventListener('click',e=>{if(e.target===m){m.classList.remove('open');document.body.style.overflow='';}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lessonModal').classList.remove('open');document.getElementById('postModal').classList.remove('open');document.body.style.overflow='';}});}
 
-// ---- ABOUT ----
-function renderAbout() {
-  const t = appData.teacher;
-  document.getElementById('aboutBio').textContent = t.bio;
-  document.getElementById('aboutInfo').innerHTML = `
-    <div class="info-row"><span class="info-icon">🎂</span><div><div class="info-label">Ngày sinh</div><div class="info-val">${t.dob}</div></div></div>
-    <div class="info-row"><span class="info-icon">🏫</span><div><div class="info-label">Đơn vị</div><div class="info-val">${t.school}</div></div></div>
-    <div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">Địa chỉ</div><div class="info-val">${t.district}</div></div></div>
-    <div class="info-row"><span class="info-icon">📚</span><div><div class="info-label">Môn dạy</div><div class="info-val">${t.subjects.join(', ')} – ${t.grades.join(', ')}</div></div></div>
-    <div class="info-row"><span class="info-icon">⭐</span><div><div class="info-label">Kinh nghiệm</div><div class="info-val">${t.experience}</div></div></div>
-  `;
-}
+function renderGallery(photos){const g=document.getElementById('galleryGrid');g.innerHTML=photos.map((p,i)=>`<div class="gallery-item" data-gcat="${p.category}" data-index="${i}"><img src="${p.url}" alt="${p.title}" loading="lazy"/><div class="gallery-overlay"><div class="gallery-caption"><h4>${p.title}</h4><p>${p.description}</p></div></div><div class="gallery-cat">${p.category}</div></div>`).join('');g.querySelectorAll('.gallery-item').forEach(item=>item.addEventListener('click',()=>{lightboxVisible=[...g.querySelectorAll('.gallery-item:not(.hidden)')];lightboxIndex=lightboxVisible.indexOf(item);showLightboxItem();document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}));}
+function setupGalleryFilters(){document.querySelectorAll('[data-gfilter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-gfilter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.gfilter;document.querySelectorAll('.gallery-item').forEach(i=>i.classList.toggle('hidden',f!=='all'&&i.dataset.gcat!==f));}));}
+function showLightboxItem(){const item=lightboxVisible[lightboxIndex];document.getElementById('lightboxImg').src=item.querySelector('img').src;const c=item.querySelector('.gallery-caption');document.getElementById('lightboxCaption').innerHTML=`<strong>${c.querySelector('h4').textContent}</strong><br/>${c.querySelector('p').textContent}`;}
+function setupLightbox(){const lb=document.getElementById('lightbox');document.getElementById('lightboxClose').addEventListener('click',()=>{lb.classList.remove('open');document.body.style.overflow='';});document.getElementById('lightboxPrev').addEventListener('click',()=>{lightboxIndex=(lightboxIndex-1+lightboxVisible.length)%lightboxVisible.length;showLightboxItem();});document.getElementById('lightboxNext').addEventListener('click',()=>{lightboxIndex=(lightboxIndex+1)%lightboxVisible.length;showLightboxItem();});lb.addEventListener('click',e=>{if(e.target===lb){lb.classList.remove('open');document.body.style.overflow='';}});}
 
-// ---- LESSONS ----
-function renderLessons(lessons) {
-  const grid = document.getElementById('lessonsGrid');
-  grid.innerHTML = lessons.map(l => lessonCardHTML(l)).join('');
-  grid.querySelectorAll('.lesson-card').forEach((card, i) => {
-    card.addEventListener('click', () => openLessonModal(lessons[i] || appData.lessons.find(x => x.id == card.dataset.id)));
-  });
-}
+function renderAnnouncements(){document.getElementById('announceList').innerHTML=appData.announcements.map(a=>{const bc={important:'badge-important',event:'badge-event',normal:'badge-normal'}[a.type];const bl={important:'❗ Quan trọng',event:'🎉 Sự kiện',normal:'🔔 Thông báo'}[a.type];const d=new Date(a.date).toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'});return `<div class="announce-card type-${a.type}"><div class="announce-icon">${a.icon}</div><div class="announce-body"><span class="announce-badge ${bc}">${bl}</span><div class="announce-title">${a.title}</div><div class="announce-date">📅 ${d}</div><div class="announce-text">${a.content}</div></div></div>`;}).join('');}
+function renderSchedule(){document.getElementById('scheduleTable').innerHTML=appData.schedule.map(d=>`<div class="schedule-day"><div class="schedule-day-name">${d.day}</div><div class="schedule-lessons">${d.lessons.map(l=>`<div class="schedule-lesson">📚 ${l}</div>`).join('')}</div></div>`).join('');}
 
-function lessonCardHTML(l) {
-  const isMath = l.subject === 'Toán';
-  const isAdv  = l.level === 'Nâng cao';
-  return `
-    <div class="lesson-card" data-id="${l.id}" data-subject="${l.subject}" data-grade="${l.grade}">
-      <div class="lesson-top">
-        <div class="lesson-icon-wrap ${isMath ? 'subject-math' : 'subject-viet'}">${l.icon}</div>
-        <div class="lesson-meta">
-          <div class="lesson-subject ${isMath ? 'math' : 'viet'}">${l.subject}</div>
-          <span class="lesson-grade">${l.grade}</span>
-        </div>
-      </div>
-      <div class="lesson-title">${l.title}</div>
-      <div class="lesson-desc">${l.description}</div>
-      <div class="lesson-footer">
-        <div class="lesson-tags">
-          ${l.topics.slice(0,2).map(t => `<span class="lesson-tag">${t}</span>`).join('')}
-        </div>
-        <span class="lesson-level ${isAdv ? 'level-advanced' : 'level-basic'}">${l.level}</span>
-      </div>
-      <div class="lesson-view-more">Xem chi tiết →</div>
-    </div>`;
-}
+function submitForm(){const n=document.getElementById('formName').value.trim();const p=document.getElementById('formPhone').value.trim();const m=document.getElementById('formMsg').value.trim();if(!n||!m){alert('Vui lòng nhập họ tên và nội dung!');return;}window.open(`https://zalo.me/0388918131?text=${encodeURIComponent(`Xin chào cô Thìn!\nTôi là: ${n}${p?'\nSĐT: '+p:''}\n\nNội dung: ${m}`)}`, '_blank');}
+window.submitForm=submitForm;
 
-// ---- LESSON FILTERS ----
-function setupFilters() {
-  document.querySelectorAll('[data-filter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      const cards = document.querySelectorAll('.lesson-card');
-      cards.forEach(card => {
-        const match = f === 'all'
-          || card.dataset.subject === f
-          || card.dataset.grade === f;
-        card.classList.toggle('hidden', !match);
-      });
-    });
-  });
-}
+function setupNavbar(){window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>10));}
+function setupNavToggle(){const t=document.getElementById('navToggle'),l=document.getElementById('navLinks');t.addEventListener('click',()=>l.classList.toggle('open'));l.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>l.classList.remove('open')));}
+function setupScrollSpy(){const s=['home','posts','lessons','gallery','announcements','contact'];const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.dataset.section===e.target.id));}),{rootMargin:'-40% 0px -50% 0px'});s.forEach(id=>{const el=document.getElementById(id);if(el)o.observe(el);});}
+function setupBackToTop(){const b=document.getElementById('backToTop');window.addEventListener('scroll',()=>b.classList.toggle('visible',window.scrollY>400));b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));}
 
-// ---- LESSON MODAL ----
-function openLessonModal(l) {
-  const isMath = l.subject === 'Toán';
-  document.getElementById('modalContent').innerHTML = `
-    <div class="modal-subject" style="color:${isMath ? 'var(--amber-dark)' : 'var(--green)'}">${l.icon} ${l.subject}</div>
-    <div class="modal-title">${l.title}</div>
-    <div class="modal-tags">
-      <span class="modal-tag">${l.grade}</span>
-      <span class="modal-tag">⏱ ${l.duration}</span>
-      <span class="modal-tag">${l.level}</span>
-    </div>
-    <p class="modal-desc">${l.description}</p>
-    <div class="modal-topics">
-      <h4>📌 Nội dung chính</h4>
-      <ul>${l.topics.map(t => `<li>${t}</li>`).join('')}</ul>
-    </div>
-    <div class="modal-info">
-      <div class="modal-info-item">⏱ ${l.duration}</div>
-      <div class="modal-info-item">📚 ${l.subject}</div>
-      <div class="modal-info-item">🎓 ${l.grade}</div>
-    </div>
-    <div style="margin-top:20px; padding:16px; background:var(--cream); border-radius:var(--radius-sm); border:1px solid var(--border);">
-      <p style="font-size:0.85rem; color:var(--text-light);">💬 Liên hệ cô Thìn qua Zalo <strong>0388 918 131</strong> để nhận tài liệu chi tiết và bài tập thực hành.</p>
-    </div>
-  `;
-  document.getElementById('lessonModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function setupModal() {
-  document.getElementById('modalClose').addEventListener('click', closeModal);
-  document.getElementById('lessonModal').addEventListener('click', e => {
-    if (e.target === document.getElementById('lessonModal')) closeModal();
-  });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-}
-
-function closeModal() {
-  document.getElementById('lessonModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ---- GALLERY ----
-function renderGallery(photos) {
-  currentGallery = photos;
-  const grid = document.getElementById('galleryGrid');
-  grid.innerHTML = photos.map((p, i) => `
-    <div class="gallery-item" data-gcat="${p.category}" data-index="${i}">
-      <img src="${p.url}" alt="${p.title}" loading="lazy" />
-      <div class="gallery-overlay">
-        <div class="gallery-caption">
-          <h4>${p.title}</h4>
-          <p>${p.description}</p>
-        </div>
-      </div>
-      <div class="gallery-cat">${p.category}</div>
-    </div>
-  `).join('');
-
-  grid.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const visibleItems = [...grid.querySelectorAll('.gallery-item:not(.hidden)')];
-      lightboxIndex = visibleItems.indexOf(item);
-      openLightbox(visibleItems);
-    });
-  });
-}
-
-// ---- GALLERY FILTERS ----
-function setupGalleryFilters() {
-  document.querySelectorAll('[data-gfilter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('[data-gfilter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.gfilter;
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.classList.toggle('hidden', f !== 'all' && item.dataset.gcat !== f);
-      });
-    });
-  });
-}
-
-// ---- LIGHTBOX ----
-function setupLightbox() {
-  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-  document.getElementById('lightboxPrev').addEventListener('click', () => moveLightbox(-1));
-  document.getElementById('lightboxNext').addEventListener('click', () => moveLightbox(1));
-  document.getElementById('lightbox').addEventListener('click', e => {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  });
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') moveLightbox(-1);
-    if (e.key === 'ArrowRight') moveLightbox(1);
-  });
-}
-
-let lightboxVisible = [];
-
-function openLightbox(visibleItems) {
-  lightboxVisible = visibleItems;
-  showLightboxItem();
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function showLightboxItem() {
-  const item = lightboxVisible[lightboxIndex];
-  const img = item.querySelector('img');
-  const caption = item.querySelector('.gallery-caption');
-  document.getElementById('lightboxImg').src = img.src;
-  document.getElementById('lightboxImg').alt = img.alt;
-  document.getElementById('lightboxCaption').innerHTML =
-    `<strong>${caption.querySelector('h4').textContent}</strong><br/>${caption.querySelector('p').textContent}`;
-}
-
-function moveLightbox(dir) {
-  lightboxIndex = (lightboxIndex + dir + lightboxVisible.length) % lightboxVisible.length;
-  showLightboxItem();
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ---- ANNOUNCEMENTS ----
-function renderAnnouncements() {
-  const list = document.getElementById('announceList');
-  list.innerHTML = appData.announcements.map(a => {
-    const badgeClass = { important: 'badge-important', event: 'badge-event', normal: 'badge-normal' }[a.type];
-    const badgeLabel = { important: '❗ Quan trọng', event: '🎉 Sự kiện', normal: '🔔 Thông báo' }[a.type];
-    const dateStr = new Date(a.date).toLocaleDateString('vi-VN', { day:'2-digit', month:'2-digit', year:'numeric' });
-    return `
-      <div class="announce-card type-${a.type}">
-        <div class="announce-icon">${a.icon}</div>
-        <div class="announce-body">
-          <span class="announce-badge ${badgeClass}">${badgeLabel}</span>
-          <div class="announce-title">${a.title}</div>
-          <div class="announce-date">📅 ${dateStr}</div>
-          <div class="announce-text">${a.content}</div>
-        </div>
-      </div>`;
-  }).join('');
-}
-
-// ---- SCHEDULE ----
-function renderSchedule() {
-  const table = document.getElementById('scheduleTable');
-  table.innerHTML = appData.schedule.map(d => `
-    <div class="schedule-day">
-      <div class="schedule-day-name">${d.day}</div>
-      <div class="schedule-lessons">
-        ${d.lessons.map(l => `<div class="schedule-lesson">📚 ${l}</div>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-// ---- CONTACT FORM ----
-function submitForm() {
-  const name = document.getElementById('formName').value.trim();
-  const phone = document.getElementById('formPhone').value.trim();
-  const msg = document.getElementById('formMsg').value.trim();
-  if (!name || !msg) {
-    alert('Vui lòng nhập họ tên và nội dung!');
-    return;
-  }
-  const text = encodeURIComponent(
-    `Xin chào cô Thìn!\nTôi là: ${name}${phone ? '\nSĐT: ' + phone : ''}\n\nNội dung: ${msg}`
-  );
-  window.open(`https://zalo.me/0388918131?text=${text}`, '_blank');
-}
-window.submitForm = submitForm;
-
-// ---- NAVBAR ----
-function setupNavbar() {
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 10);
-  });
-}
-
-// ---- NAV TOGGLE (mobile) ----
-function setupNavToggle() {
-  const toggle = document.getElementById('navToggle');
-  const links  = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('.nav-link').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
-}
-
-// ---- SCROLL SPY ----
-function setupScrollSpy() {
-  const sections = ['home','lessons','gallery','announcements','contact'];
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.nav-link').forEach(l => {
-          l.classList.toggle('active', l.dataset.section === entry.target.id);
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -50% 0px' });
-
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) observer.observe(el);
-  });
-}
-
-// ---- BACK TO TOP ----
-function setupBackToTop() {
-  const btn = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('visible', window.scrollY > 400);
-  });
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-// ---- START ----
-document.addEventListener('DOMContentLoaded', loadData);
+document.addEventListener('DOMContentLoaded',loadData);

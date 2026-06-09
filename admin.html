@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản lý – Cô Thìn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --amber:#f59e0b; --amber-dark:#d97706; --green:#16a34a;
+      --cream:#fffbf5; --border:#e7e5e4; --text:#1c1917;
+      --text-mid:#44403c; --text-light:#78716c;
+      --radius:14px; --shadow:0 4px 20px rgba(0,0,0,0.1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:#f5f5f4;color:var(--text);min-height:100vh;}
+    a{text-decoration:none;color:inherit;}
+
+    /* LOGIN */
+    .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fffbf5,#fef3c7,#dcfce7);}
+    .login-box{background:white;border-radius:20px;padding:48px 40px;width:100%;max-width:420px;box-shadow:var(--shadow);text-align:center;}
+    .login-icon{font-size:3rem;margin-bottom:12px;}
+    .login-title{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:6px;}
+    .login-sub{font-size:0.88rem;color:var(--text-light);margin-bottom:32px;}
+    .login-box input{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.95rem;margin-bottom:14px;outline:none;transition:border-color .2s;}
+    .login-box input:focus{border-color:var(--amber);}
+    .login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:white;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:opacity .2s;}
+    .login-btn:hover{opacity:.9;}
+    .login-err{color:#ef4444;font-size:0.85rem;margin-top:10px;display:none;}
+
+    /* ADMIN LAYOUT */
+    .admin-wrap{display:none;min-height:100vh;}
+    .admin-header{background:white;border-bottom:1px solid var(--border);padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .admin-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;}
+    .admin-brand span{font-size:1.5rem;}
+    .admin-header-right{display:flex;align-items:center;gap:12px;}
+    .btn-visit{padding:8px 18px;border-radius:20px;background:#fef3c7;color:var(--amber-dark);border:1.5px solid #fde68a;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+    .btn-logout{padding:8px 18px;border-radius:20px;background:#fee2e2;color:#dc2626;border:1.5px solid #fecaca;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+
+    .admin-body{max-width:1000px;margin:0 auto;padding:32px 20px;}
+
+    /* TABS */
+    .tabs{display:flex;gap:8px;margin-bottom:28px;border-bottom:2px solid var(--border);padding-bottom:0;}
+    .tab-btn{padding:10px 20px;border:none;background:none;font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;color:var(--text-light);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+    .tab-btn.active{color:var(--amber-dark);border-bottom-color:var(--amber);}
+
+    .tab-content{display:none;}
+    .tab-content.active{display:block;}
+
+    /* FORM CARD */
+    .form-card{background:white;border-radius:var(--radius);padding:28px;border:1px solid var(--border);margin-bottom:24px;}
+    .form-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+    .fg{margin-bottom:16px;}
+    .fg label{display:block;font-size:0.83rem;font-weight:700;color:var(--text-mid);margin-bottom:6px;}
+    .fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:0.92rem;color:var(--text);background:var(--cream);transition:border-color .2s;resize:vertical;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--amber);background:white;}
+    .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .fg-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+    .btn-save{padding:12px 28px;background:linear-gradient(135deg,var(--amber),var(--amber-dark));color:white;border:none;border-radius:50px;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;box-shadow:0 4px 14px rgba(245,158,11,.35);}
+    .btn-save:hover{transform:translateY(-2px);}
+    .btn-del{padding:8px 16px;background:#fee2e2;color:#dc2626;border:1.5px solid #fecaca;border-radius:20px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;}
+    .btn-del:hover{background:#fecaca;}
+
+    .save-msg{display:inline-block;margin-left:14px;font-size:0.85rem;color:var(--green);opacity:0;transition:opacity .3s;}
+    .save-msg.show{opacity:1;}
+
+    /* POSTS LIST */
+    .posts-admin-list{display:flex;flex-direction:column;gap:14px;}
+    .post-admin-item{background:white;border-radius:var(--radius);padding:18px 22px;border:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+    .post-admin-info{flex:1;}
+    .post-admin-title{font-weight:700;margin-bottom:4px;}
+    .post-admin-meta{font-size:0.8rem;color:var(--text-light);}
+    .post-admin-badge{font-size:0.72rem;font-weight:700;padding:2px 10px;border-radius:10px;display:inline-block;margin-right:6px;}
+    .post-admin-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
+
+    /* JSON EXPORT */
+    .json-box{background:#1c1917;border-radius:var(--radius);padding:20px;color:#a8a29e;font-family:monospace;font-size:0.82rem;max-height:400px;overflow:auto;white-space:pre-wrap;word-break:break-all;}
+    .btn-copy{padding:10px 22px;background:white;border:1.5px solid var(--border);border-radius:50px;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;}
+    .btn-copy:hover{border-color:var(--amber);color:var(--amber-dark);}
+    .instruction-box{background:#fef3c7;border:1.5px solid #fde68a;border-radius:var(--radius);padding:20px;margin-bottom:20px;}
+    .instruction-box h4{color:var(--amber-dark);margin-bottom:10px;}
+    .instruction-box ol{padding-left:20px;font-size:0.9rem;color:var(--text-mid);line-height:2;}
+    .instruction-box code{background:#fff;padding:2px 8px;border-radius:6px;font-family:monospace;font-size:0.85rem;border:1px solid #fde68a;}
+
+    .empty-state{text-align:center;padding:40px;color:var(--text-light);font-size:0.95rem;}
+    .empty-state div{font-size:2.5rem;margin-bottom:10px;}
+
+    @media(max-width:600px){
+      .fg-row,.fg-row3{grid-template-columns:1fr;}
+      .login-box{padding:32px 24px;}
+      .admin-body{padding:20px 14px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <div class="login-title">Trang Quản Lý</div>
+    <div class="login-sub">Cô Trần Thị Thìn – TH Địch Quả</div>
+    <input type="password" id="pwInput" placeholder="Nhập mật khẩu..." onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Đăng nhập</button>
+    <div class="login-err" id="loginErr">❌ Mật khẩu không đúng!</div>
+  </div>
+</div>
+
+<!-- ADMIN SCREEN -->
+<div class="admin-wrap" id="adminWrap">
+  <header class="admin-header">
+    <div class="admin-brand"><span>🌸</span> Quản lý – Cô Thìn</div>
+    <div class="admin-header-right">
+      <button class="btn-visit" onclick="window.open('index.html','_blank')">🌐 Xem website</button>
+      <button class="btn-logout" onclick="doLogout()">Đăng xuất</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('tab-new')">✏️ Đăng bài mới</button>
+      <button class="tab-btn" onclick="switchTab('tab-manage')">📋 Quản lý bài đăng</button>
+      <button class="tab-btn" onclick="switchTab('tab-export')">💾 Xuất & Cập nhật</button>
+    </div>
+
+    <!-- TAB 1: ĐĂNG BÀI MỚI -->
+    <div class="tab-content active" id="tab-new">
+      <div class="form-card">
+        <h3>✏️ Tạo bài đăng mới</h3>
+        <div class="fg-row">
+          <div class="fg">
+            <label>Loại bài đăng *</label>
+            <select id="fCategory">
+              <option value="Giáo án">📋 Giáo án</option>
+              <option value="Chia sẻ">💡 Chia sẻ kinh nghiệm</option>
+              <option value="Thông báo">📢 Thông báo</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Icon / Emoji *</label>
+            <input type="text" id="fThumb" placeholder="📝" value="📝"/>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Tiêu đề bài đăng *</label>
+          <input type="text" id="fTitle" placeholder="Vd: Giáo án Toán lớp 4 – Bài 5: Phép cộng..."/>
+        </div>
+        <div class="fg-row3">
+          <div class="fg">
+            <label>Môn học</label>
+            <select id="fSubject">
+              <option value="Toán">Toán</option>
+              <option value="Tiếng Việt">Tiếng Việt</option>
+              <option value="Tất cả">Tất cả</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Lớp</label>
+            <select id="fGrade">
+              <option value="Lớp 4">Lớp 4</option>
+              <option value="Lớp 5">Lớp 5</option>
+              <option value="Lớp 4, Lớp 5">Lớp 4 & 5</option>
+              <option value="Tất cả">Tất cả</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Ngày đăng</label>
+            <input type="date" id="fDate"/>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Tóm tắt ngắn (hiện ngoài thẻ bài) *</label>
+          <input type="text" id="fSummary" placeholder="Mô tả ngắn gọn nội dung bài..."/>
+        </div>
+        <div class="fg">
+          <label>Nội dung chi tiết *</label>
+          <textarea id="fContent" rows="10" placeholder="Nhập nội dung đầy đủ của bài đăng...&#10;Có thể dùng xuống dòng bình thường."></textarea>
+        </div>
+        <div class="fg">
+          <label>Tags (phân cách bằng dấu phẩy)</label>
+          <input type="text" id="fTags" placeholder="Toán, Lớp 4, Giáo án, Phép cộng"/>
+        </div>
+        <div style="display:flex;align-items:center;gap:0;">
+          <button class="btn-save" onclick="addPost()">💾 Lưu bài đăng</button>
+          <span class="save-msg" id="saveMsg">✅ Đã lưu!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: QUẢN LÝ -->
+    <div class="tab-content" id="tab-manage">
+      <div class="form-card">
+        <h3>📋 Danh sách bài đăng (<span id="postCount">0</span> bài)</h3>
+        <div class="posts-admin-list" id="postsAdminList"></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: XUẤT & CẬP NHẬT -->
+    <div class="tab-content" id="tab-export">
+      <div class="instruction-box">
+        <h4>📖 Hướng dẫn cập nhật website</h4>
+        <ol>
+          <li>Nhấn nút <strong>"📋 Sao chép nội dung"</strong> bên dưới</li>
+          <li>Mở GitHub → vào repo <code>co-thin-website</code></li>
+          <li>Nhấn vào file <code>data.json</code> → nhấn biểu tượng ✏️ <strong>Edit</strong></li>
+          <li>Xoá toàn bộ nội dung cũ → Dán (<code>Ctrl+V</code>) nội dung mới vào</li>
+          <li>Nhấn <strong>"Commit changes"</strong> → chờ 1–2 phút là website tự cập nhật!</li>
+        </ol>
+      </div>
+      <div class="form-card">
+        <h3>💾 Nội dung file data.json mới</h3>
+        <div style="display:flex;gap:10px;margin-bottom:16px;">
+          <button class="btn-copy" onclick="copyJSON()">📋 Sao chép nội dung</button>
+          <button class="btn-copy" onclick="downloadJSON()">⬇️ Tải xuống data.json</button>
+        </div>
+        <div class="json-box" id="jsonBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== CONFIG =====
+const ADMIN_PASSWORD = 'cothin2025'; // ← Đổi mật khẩu tại đây
+
+// ===== STATE =====
+let jsonData = null;
+
+// ===== LOGIN =====
+function doLogin() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('loginWrap').style.display = 'none';
+    document.getElementById('adminWrap').style.display = 'block';
+    loadAdminData();
+  } else {
+    const err = document.getElementById('loginErr');
+    err.style.display = 'block';
+    setTimeout(() => err.style.display = 'none', 2500);
+  }
+}
+
+function doLogout() {
+  if (confirm('Bạn có chắc muốn đăng xuất?')) {
+    document.getElementById('adminWrap').style.display = 'none';
+    document.getElementById('loginWrap').style.display = 'flex';
+    document.getElementById('pwInput').value = '';
+  }
+}
+
+// ===== LOAD DATA =====
+async function loadAdminData() {
+  // Ưu tiên dữ liệu đã lưu trong session, sau đó mới fetch
+  const saved = sessionStorage.getItem('adminData');
+  if (saved) {
+    jsonData = JSON.parse(saved);
+  } else {
+    try {
+      const res = await fetch('data.json');
+      jsonData = await res.json();
+    } catch(e) {
+      jsonData = { teacher:{}, posts:[], lessons:[], gallery:[], announcements:[], schedule:[] };
+    }
+  }
+  // Set ngày mặc định = hôm nay
+  document.getElementById('fDate').value = new Date().toISOString().split('T')[0];
+  refreshAdminUI();
+}
+
+function saveToSession() {
+  sessionStorage.setItem('adminData', JSON.stringify(jsonData));
+}
+
+// ===== ADD POST =====
+function addPost() {
+  const title   = document.getElementById('fTitle').value.trim();
+  const summary = document.getElementById('fSummary').value.trim();
+  const content = document.getElementById('fContent').value.trim();
+  if (!title || !summary || !content) {
+    alert('Vui lòng điền đầy đủ: Tiêu đề, Tóm tắt và Nội dung!');
+    return;
+  }
+  const tagsRaw = document.getElementById('fTags').value;
+  const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+  const maxId = jsonData.posts.length > 0 ? Math.max(...jsonData.posts.map(p => p.id)) : 0;
+  const newPost = {
+    id:       maxId + 1,
+    title:    title,
+    category: document.getElementById('fCategory').value,
+    subject:  document.getElementById('fSubject').value,
+    grade:    document.getElementById('fGrade').value,
+    date:     document.getElementById('fDate').value,
+    author:   jsonData.teacher.name || 'Trần Thị Thìn',
+    thumbnail:document.getElementById('fThumb').value || '📝',
+    summary:  summary,
+    content:  content,
+    tags:     tags
+  };
+  jsonData.posts.unshift(newPost); // thêm vào đầu danh sách
+  saveToSession();
+  refreshAdminUI();
+  // Reset form
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fSummary').value = '';
+  document.getElementById('fContent').value = '';
+  document.getElementById('fTags').value = '';
+  document.getElementById('fThumb').value = '📝';
+  // Hiện thông báo
+  const msg = document.getElementById('saveMsg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 2000);
+}
+
+// ===== DELETE POST =====
+function deletePost(id) {
+  if (!confirm('Bạn có chắc muốn xoá bài này?')) return;
+  jsonData.posts = jsonData.posts.filter(p => p.id !== id);
+  saveToSession();
+  refreshAdminUI();
+}
+
+// ===== REFRESH UI =====
+function refreshAdminUI() {
+  renderAdminPosts();
+  renderJSONBox();
+  document.getElementById('postCount').textContent = jsonData.posts.length;
+}
+
+function renderAdminPosts() {
+  const list = document.getElementById('postsAdminList');
+  if (jsonData.posts.length === 0) {
+    list.innerHTML = '<div class="empty-state"><div>📭</div>Chưa có bài đăng nào. Hãy tạo bài đầu tiên!</div>';
+    return;
+  }
+  list.innerHTML = jsonData.posts.map(p => {
+    const cc = p.category === 'Giáo án' ? 'giaoan' : p.category === 'Chia sẻ' ? 'chiase' : 'thongbao';
+    const bgMap = {giaoan:'#fef3c7',chiase:'#dcfce7',thongbao:'#e0f2fe'};
+    const clMap = {giaoan:'#b45309',chiase:'#15803d',thongbao:'#0369a1'};
+    const dateStr = new Date(p.date).toLocaleDateString('vi-VN');
+    return `
+      <div class="post-admin-item">
+        <div class="post-admin-info">
+          <span class="post-admin-badge" style="background:${bgMap[cc]};color:${clMap[cc]}">${p.category}</span>
+          <div class="post-admin-title">${p.thumbnail} ${p.title}</div>
+          <div class="post-admin-meta">📅 ${dateStr} &nbsp;|&nbsp; 🎓 ${p.grade} &nbsp;|&nbsp; 📚 ${p.subject}</div>
+        </div>
+        <div class="post-admin-actions">
+          <button class="btn-del" onclick="deletePost(${p.id})">🗑️ Xoá</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderJSONBox() {
+  document.getElementById('jsonBox').textContent = JSON.stringify(jsonData, null, 2);
+}
+
+// ===== COPY / DOWNLOAD =====
+function copyJSON() {
+  const text = JSON.stringify(jsonData, null, 2);
+  navigator.clipboard.writeText(text).then(() => {
+    alert('✅ Đã sao chép! Giờ vào GitHub dán vào file data.json rồi Commit là xong.');
+  }).catch(() => {
+    // fallback
+    const el = document.createElement('textarea');
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert('✅ Đã sao chép!');
+  });
+}
+
+function downloadJSON() {
+  const blob = new Blob([JSON.stringify(jsonData, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ===== TABS =====
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (id === 'tab-export') renderJSONBox();
+}
+</script>
+</body>
+</html>

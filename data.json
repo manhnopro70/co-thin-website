@@ -13,198 +13,86 @@
     "zalo": "0388918131",
     "avatar": "https://api.dicebear.com/7.x/lorelei/svg?seed=cothin&backgroundColor=fef3c7"
   },
-  "lessons": [
+  "posts": [
     {
       "id": 1,
+      "title": "Giáo án Toán lớp 4 – Phép nhân với số có hai chữ số",
+      "category": "Giáo án",
       "subject": "Toán",
       "grade": "Lớp 4",
-      "title": "Phép nhân với số có hai chữ số",
-      "description": "Hướng dẫn học sinh thực hiện phép nhân với số có hai chữ số, áp dụng vào bài toán thực tế.",
-      "topics": ["Nhân số có nhiều chữ số", "Tính chất giao hoán", "Bài tập vận dụng"],
-      "duration": "45 phút",
-      "level": "Cơ bản",
-      "icon": "📐"
+      "date": "2025-03-01",
+      "author": "Trần Thị Thìn",
+      "thumbnail": "📐",
+      "summary": "Giáo án chi tiết hướng dẫn học sinh thực hiện phép nhân với số có hai chữ số, kèm bài tập vận dụng thực tế.",
+      "content": "I. MỤC TIÊU\n• Học sinh biết thực hiện phép nhân với số có hai chữ số.\n• Áp dụng được vào giải các bài toán thực tế.\n• Rèn luyện tính cẩn thận, chính xác.\n\nII. ĐỒ DÙNG DẠY HỌC\n• Bảng phụ, phiếu bài tập.\n• Bộ thẻ số.\n\nIII. CÁC HOẠT ĐỘNG DẠY HỌC\n1. Kiểm tra bài cũ (5 phút)\n   – Gọi 2 học sinh lên bảng thực hiện phép tính.\n\n2. Bài mới (25 phút)\n   – Giới thiệu ví dụ: 36 × 23\n   – Hướng dẫn đặt tính và thực hiện từng bước.\n   – Học sinh thực hành theo nhóm.\n\n3. Luyện tập (10 phút)\n   – Bài 1: Đặt tính rồi tính.\n   – Bài 2: Giải toán có lời văn.\n\n4. Củng cố – Dặn dò (5 phút)\n   – Nhận xét tiết học.\n   – Về nhà hoàn thành bài tập SGK trang 68.",
+      "tags": ["Toán", "Lớp 4", "Phép nhân", "Giáo án"]
     },
     {
       "id": 2,
-      "subject": "Toán",
-      "grade": "Lớp 4",
-      "title": "Phép chia cho số có hai chữ số",
-      "description": "Rèn luyện kỹ năng thực hiện phép chia có dư và không có dư với số chia là số có hai chữ số.",
-      "topics": ["Chia hết", "Chia có dư", "Thử lại phép chia"],
-      "duration": "45 phút",
-      "level": "Cơ bản",
-      "icon": "➗"
+      "title": "Giáo án Tiếng Việt lớp 5 – Tập làm văn: Tả người thân",
+      "category": "Giáo án",
+      "subject": "Tiếng Việt",
+      "grade": "Lớp 5",
+      "date": "2025-03-05",
+      "author": "Trần Thị Thìn",
+      "thumbnail": "📝",
+      "summary": "Hướng dẫn học sinh viết bài văn miêu tả người thân với bố cục rõ ràng, cảm xúc chân thật.",
+      "content": "I. MỤC TIÊU\n• Học sinh biết lập dàn ý chi tiết cho bài văn tả người thân.\n• Viết được đoạn mở bài, thân bài, kết bài.\n• Dùng từ ngữ giàu hình ảnh, cảm xúc.\n\nII. ĐỒ DÙNG DẠY HỌC\n• Bảng phụ ghi dàn ý mẫu.\n• Một số bài văn mẫu.\n\nIII. CÁC HOẠT ĐỘNG DẠY HỌC\n1. Kiểm tra bài cũ (5 phút)\n   – Đọc đoạn văn tả cảnh đã viết ở nhà.\n\n2. Bài mới (25 phút)\n   – Tìm hiểu đề bài: Tả một người thân mà em yêu quý.\n   – Lập dàn ý: Mở bài, Thân bài (ngoại hình, tính cách, kỷ niệm), Kết bài.\n   – Học sinh viết bài cá nhân.\n\n3. Chia sẻ – Nhận xét (10 phút)\n   – Một số học sinh đọc bài trước lớp.\n   – Giáo viên nhận xét, sửa lỗi.\n\n4. Dặn dò (5 phút)\n   – Hoàn thiện bài văn ở nhà.",
+      "tags": ["Tiếng Việt", "Lớp 5", "Tập làm văn", "Giáo án"]
     },
     {
       "id": 3,
+      "title": "Kinh nghiệm dạy Toán cho học sinh tiểu học hiệu quả",
+      "category": "Chia sẻ",
       "subject": "Toán",
-      "grade": "Lớp 4",
-      "title": "Diện tích hình chữ nhật và hình vuông",
-      "description": "Học sinh nắm được công thức tính diện tích, chu vi hình chữ nhật và hình vuông, giải bài toán có lời văn.",
-      "topics": ["Công thức diện tích", "Chu vi hình học", "Bài toán thực tế"],
-      "duration": "45 phút",
-      "level": "Cơ bản",
-      "icon": "🔷"
+      "grade": "Tất cả",
+      "date": "2025-03-10",
+      "author": "Trần Thị Thìn",
+      "thumbnail": "💡",
+      "summary": "Những phương pháp và kinh nghiệm giảng dạy Toán tiểu học giúp học sinh tiếp thu nhanh và yêu thích môn học.",
+      "content": "Sau hơn 20 năm đứng lớp, cô Thìn đúc kết một số kinh nghiệm dạy Toán hiệu quả:\n\n1. HỌC QUA TRÒ CHƠI\n   Trẻ tiểu học học tốt nhất khi được vui chơi. Sử dụng các trò chơi như \"Ai nhanh hơn\", \"Đố bạn\" giúp các em hứng thú.\n\n2. GẮN VỚI THỰC TẾ\n   Ví dụ bài toán gần gũi với cuộc sống hàng ngày: đi chợ, chia bánh, đong gạo... giúp học sinh dễ hiểu và nhớ lâu.\n\n3. KHEN ĐÚNG LÚC\n   Lời khen kịp thời tạo động lực rất lớn. Dù bài làm chưa hoàn toàn đúng, hãy khen phần nỗ lực.\n\n4. KHÔNG ĐỂ EM NÀO BỊ BỎ LẠI\n   Luôn quan sát, hỗ trợ học sinh yếu ngay tại lớp, không để các em mang \"lỗ hổng\" kiến thức về nhà.\n\n5. KẾT HỢP PHỤ HUYNH\n   Trao đổi thường xuyên với phụ huynh về tình hình học tập để cùng hỗ trợ các em.",
+      "tags": ["Kinh nghiệm", "Phương pháp", "Toán", "Tiểu học"]
     },
     {
       "id": 4,
-      "subject": "Toán",
-      "grade": "Lớp 5",
-      "title": "Phân số và các phép tính về phân số",
-      "description": "Ôn tập và mở rộng kiến thức về phân số: rút gọn, quy đồng, cộng trừ nhân chia phân số.",
-      "topics": ["Rút gọn phân số", "Quy đồng mẫu số", "Bốn phép tính với phân số"],
-      "duration": "45 phút",
-      "level": "Nâng cao",
-      "icon": "🔢"
-    },
-    {
-      "id": 5,
-      "subject": "Toán",
-      "grade": "Lớp 5",
-      "title": "Tỉ số phần trăm",
-      "description": "Hiểu khái niệm tỉ số phần trăm, biết tính tỉ số phần trăm của hai số và ứng dụng vào thực tế.",
-      "topics": ["Khái niệm phần trăm", "Tính phần trăm", "Bài toán lãi suất đơn giản"],
-      "duration": "45 phút",
-      "level": "Nâng cao",
-      "icon": "📊"
-    },
-    {
-      "id": 6,
-      "subject": "Tiếng Việt",
-      "grade": "Lớp 4",
-      "title": "Kể chuyện: Sự tích Hồ Gươm",
-      "description": "Đọc hiểu và kể lại câu chuyện Sự tích Hồ Gươm, rèn kỹ năng kể chuyện sáng tạo.",
-      "topics": ["Đọc hiểu văn bản", "Kể lại câu chuyện", "Luyện nói sáng tạo"],
-      "duration": "45 phút",
-      "level": "Cơ bản",
-      "icon": "📖"
-    },
-    {
-      "id": 7,
-      "subject": "Tiếng Việt",
-      "grade": "Lớp 4",
-      "title": "Chính tả: Mưa mùa hạ",
-      "description": "Nghe - viết đoạn văn tả cảnh mưa mùa hạ, phân biệt các âm dễ nhầm lẫn r/d/gi, s/x.",
-      "topics": ["Nghe - viết chính tả", "Phân biệt âm đầu", "Luyện viết đẹp"],
-      "duration": "45 phút",
-      "level": "Cơ bản",
-      "icon": "✍️"
-    },
-    {
-      "id": 8,
-      "subject": "Tiếng Việt",
-      "grade": "Lớp 5",
-      "title": "Tập làm văn: Tả người thân",
-      "description": "Hướng dẫn học sinh viết đoạn văn miêu tả người thân với đầy đủ các phần: mở bài, thân bài, kết bài.",
-      "topics": ["Dàn ý bài văn", "Miêu tả ngoại hình", "Miêu tả tính cách"],
-      "duration": "45 phút",
-      "level": "Nâng cao",
-      "icon": "📝"
-    },
-    {
-      "id": 9,
-      "subject": "Tiếng Việt",
-      "grade": "Lớp 5",
-      "title": "Luyện từ và câu: Từ đồng nghĩa, trái nghĩa",
-      "description": "Hiểu thế nào là từ đồng nghĩa, từ trái nghĩa và biết sử dụng chúng trong câu văn phù hợp.",
-      "topics": ["Khái niệm từ đồng nghĩa", "Khái niệm từ trái nghĩa", "Bài tập luyện tập"],
-      "duration": "45 phút",
-      "level": "Nâng cao",
-      "icon": "🔤"
+      "title": "Thông báo: Lịch ôn tập trước kỳ thi học kỳ II",
+      "category": "Thông báo",
+      "subject": "Tất cả",
+      "grade": "Lớp 4, Lớp 5",
+      "date": "2025-03-15",
+      "author": "Trần Thị Thìn",
+      "thumbnail": "📢",
+      "summary": "Lịch ôn tập chi tiết chuẩn bị cho kỳ kiểm tra cuối học kỳ II năm học 2024–2025.",
+      "content": "Kính gửi quý phụ huynh và các em học sinh,\n\nĐể chuẩn bị tốt cho kỳ kiểm tra cuối học kỳ II, cô thông báo lịch ôn tập như sau:\n\nLỚP 4:\n• Tuần 1 (18–22/3): Ôn Toán – Phép tính, Hình học cơ bản\n• Tuần 2 (25–29/3): Ôn Tiếng Việt – Đọc hiểu, Chính tả\n• Tuần 3 (1–5/4): Ôn tổng hợp, làm đề thử\n\nLỚP 5:\n• Tuần 1 (18–22/3): Ôn Toán – Phân số, Tỉ số phần trăm\n• Tuần 2 (25–29/3): Ôn Tiếng Việt – Tập làm văn, Luyện từ câu\n• Tuần 3 (1–5/4): Ôn tổng hợp, làm đề thử\n\nĐề nghị phụ huynh nhắc nhở các em ôn bài đầy đủ tại nhà.\nMọi thắc mắc liên hệ cô qua Zalo: 0388918131\n\nTrân trọng!",
+      "tags": ["Thông báo", "Ôn tập", "Học kỳ II", "Lịch học"]
     }
+  ],
+  "lessons": [
+    { "id": 1, "subject": "Toán", "grade": "Lớp 4", "title": "Phép nhân với số có hai chữ số", "description": "Hướng dẫn học sinh thực hiện phép nhân với số có hai chữ số, áp dụng vào bài toán thực tế.", "topics": ["Nhân số có nhiều chữ số", "Tính chất giao hoán", "Bài tập vận dụng"], "duration": "45 phút", "level": "Cơ bản", "icon": "📐" },
+    { "id": 2, "subject": "Toán", "grade": "Lớp 4", "title": "Phép chia cho số có hai chữ số", "description": "Rèn luyện kỹ năng thực hiện phép chia có dư và không có dư với số chia là số có hai chữ số.", "topics": ["Chia hết", "Chia có dư", "Thử lại phép chia"], "duration": "45 phút", "level": "Cơ bản", "icon": "➗" },
+    { "id": 3, "subject": "Toán", "grade": "Lớp 4", "title": "Diện tích hình chữ nhật và hình vuông", "description": "Học sinh nắm được công thức tính diện tích, chu vi hình chữ nhật và hình vuông.", "topics": ["Công thức diện tích", "Chu vi hình học", "Bài toán thực tế"], "duration": "45 phút", "level": "Cơ bản", "icon": "🔷" },
+    { "id": 4, "subject": "Toán", "grade": "Lớp 5", "title": "Phân số và các phép tính về phân số", "description": "Ôn tập và mở rộng kiến thức về phân số: rút gọn, quy đồng, cộng trừ nhân chia phân số.", "topics": ["Rút gọn phân số", "Quy đồng mẫu số", "Bốn phép tính với phân số"], "duration": "45 phút", "level": "Nâng cao", "icon": "🔢" },
+    { "id": 5, "subject": "Toán", "grade": "Lớp 5", "title": "Tỉ số phần trăm", "description": "Hiểu khái niệm tỉ số phần trăm, biết tính tỉ số phần trăm của hai số và ứng dụng vào thực tế.", "topics": ["Khái niệm phần trăm", "Tính phần trăm", "Bài toán lãi suất đơn giản"], "duration": "45 phút", "level": "Nâng cao", "icon": "📊" },
+    { "id": 6, "subject": "Tiếng Việt", "grade": "Lớp 4", "title": "Kể chuyện: Sự tích Hồ Gươm", "description": "Đọc hiểu và kể lại câu chuyện Sự tích Hồ Gươm, rèn kỹ năng kể chuyện sáng tạo.", "topics": ["Đọc hiểu văn bản", "Kể lại câu chuyện", "Luyện nói sáng tạo"], "duration": "45 phút", "level": "Cơ bản", "icon": "📖" },
+    { "id": 7, "subject": "Tiếng Việt", "grade": "Lớp 4", "title": "Chính tả: Mưa mùa hạ", "description": "Nghe - viết đoạn văn tả cảnh mưa mùa hạ, phân biệt các âm dễ nhầm lẫn r/d/gi, s/x.", "topics": ["Nghe - viết chính tả", "Phân biệt âm đầu", "Luyện viết đẹp"], "duration": "45 phút", "level": "Cơ bản", "icon": "✍️" },
+    { "id": 8, "subject": "Tiếng Việt", "grade": "Lớp 5", "title": "Tập làm văn: Tả người thân", "description": "Hướng dẫn học sinh viết đoạn văn miêu tả người thân với đầy đủ các phần.", "topics": ["Dàn ý bài văn", "Miêu tả ngoại hình", "Miêu tả tính cách"], "duration": "45 phút", "level": "Nâng cao", "icon": "📝" },
+    { "id": 9, "subject": "Tiếng Việt", "grade": "Lớp 5", "title": "Luyện từ và câu: Từ đồng nghĩa, trái nghĩa", "description": "Hiểu thế nào là từ đồng nghĩa, từ trái nghĩa và biết sử dụng chúng trong câu văn phù hợp.", "topics": ["Khái niệm từ đồng nghĩa", "Khái niệm từ trái nghĩa", "Bài tập luyện tập"], "duration": "45 phút", "level": "Nâng cao", "icon": "🔤" }
   ],
   "gallery": [
-    {
-      "id": 1,
-      "title": "Giờ học Toán sôi nổi",
-      "description": "Học sinh lớp 4A hăng say giải bài tập",
-      "url": "https://picsum.photos/seed/class1/600/400",
-      "category": "Học tập"
-    },
-    {
-      "id": 2,
-      "title": "Tiết đọc sách thư viện",
-      "description": "Các em khám phá kho tàng tri thức",
-      "url": "https://picsum.photos/seed/library2/600/400",
-      "category": "Hoạt động"
-    },
-    {
-      "id": 3,
-      "title": "Ngày hội Toán học",
-      "description": "Cuộc thi Toán vui cấp trường",
-      "url": "https://picsum.photos/seed/math3/600/400",
-      "category": "Sự kiện"
-    },
-    {
-      "id": 4,
-      "title": "Lễ chào cờ đầu tuần",
-      "description": "Học sinh nghiêm trang trong lễ chào cờ",
-      "url": "https://picsum.photos/seed/flag4/600/400",
-      "category": "Sự kiện"
-    },
-    {
-      "id": 5,
-      "title": "Giờ học Tiếng Việt",
-      "description": "Cô Thìn hướng dẫn học sinh tập đọc",
-      "url": "https://picsum.photos/seed/viet5/600/400",
-      "category": "Học tập"
-    },
-    {
-      "id": 6,
-      "title": "Hoạt động nhóm",
-      "description": "Các em cùng nhau thảo luận bài học",
-      "url": "https://picsum.photos/seed/group6/600/400",
-      "category": "Học tập"
-    },
-    {
-      "id": 7,
-      "title": "Văn nghệ 20/11",
-      "description": "Học sinh biểu diễn mừng ngày Nhà giáo",
-      "url": "https://picsum.photos/seed/event7/600/400",
-      "category": "Sự kiện"
-    },
-    {
-      "id": 8,
-      "title": "Trang trí lớp học",
-      "description": "Lớp học xanh - sạch - đẹp",
-      "url": "https://picsum.photos/seed/class8/600/400",
-      "category": "Hoạt động"
-    }
+    { "id": 1, "title": "Giờ học Toán sôi nổi", "description": "Học sinh lớp 4A hăng say giải bài tập", "url": "https://picsum.photos/seed/class1/600/400", "category": "Học tập" },
+    { "id": 2, "title": "Tiết đọc sách thư viện", "description": "Các em khám phá kho tàng tri thức", "url": "https://picsum.photos/seed/library2/600/400", "category": "Hoạt động" },
+    { "id": 3, "title": "Ngày hội Toán học", "description": "Cuộc thi Toán vui cấp trường", "url": "https://picsum.photos/seed/math3/600/400", "category": "Sự kiện" },
+    { "id": 4, "title": "Lễ chào cờ đầu tuần", "description": "Học sinh nghiêm trang trong lễ chào cờ", "url": "https://picsum.photos/seed/flag4/600/400", "category": "Sự kiện" },
+    { "id": 5, "title": "Giờ học Tiếng Việt", "description": "Cô Thìn hướng dẫn học sinh tập đọc", "url": "https://picsum.photos/seed/viet5/600/400", "category": "Học tập" },
+    { "id": 6, "title": "Hoạt động nhóm", "description": "Các em cùng nhau thảo luận bài học", "url": "https://picsum.photos/seed/group6/600/400", "category": "Học tập" },
+    { "id": 7, "title": "Văn nghệ 20/11", "description": "Học sinh biểu diễn mừng ngày Nhà giáo", "url": "https://picsum.photos/seed/event7/600/400", "category": "Sự kiện" },
+    { "id": 8, "title": "Trang trí lớp học", "description": "Lớp học xanh - sạch - đẹp", "url": "https://picsum.photos/seed/class8/600/400", "category": "Hoạt động" }
   ],
   "announcements": [
-    {
-      "id": 1,
-      "title": "Lịch kiểm tra định kỳ Học kỳ II",
-      "date": "2025-03-01",
-      "content": "Kiểm tra Toán và Tiếng Việt lớp 4, 5 vào ngày 15/03/2025. Học sinh ôn tập đầy đủ các bài đã học.",
-      "type": "important",
-      "icon": "📅"
-    },
-    {
-      "id": 2,
-      "title": "Phụ huynh họp đầu học kỳ II",
-      "date": "2025-02-15",
-      "content": "Họp phụ huynh học sinh lớp 4A và 5A vào 8h00 ngày 20/02/2025 tại phòng học. Đề nghị phụ huynh sắp xếp thời gian tham dự đầy đủ.",
-      "type": "normal",
-      "icon": "👨‍👩‍👧"
-    },
-    {
-      "id": 3,
-      "title": "Cuộc thi Toán Tuổi Thơ cấp huyện",
-      "date": "2025-03-10",
-      "content": "Nhà trường chọn học sinh tiêu biểu tham dự cuộc thi Toán Tuổi Thơ cấp huyện. Học sinh quan tâm đăng ký với cô Thìn.",
-      "type": "event",
-      "icon": "🏆"
-    },
-    {
-      "id": 4,
-      "title": "Thay đổi lịch học tuần 3 tháng 3",
-      "date": "2025-03-05",
-      "content": "Do nhà trường tổ chức hoạt động ngoại khóa, lịch học Toán ngày 12/03 được dời sang ngày 13/03. Học sinh lưu ý.",
-      "type": "normal",
-      "icon": "🔔"
-    }
+    { "id": 1, "title": "Lịch kiểm tra định kỳ Học kỳ II", "date": "2025-03-01", "content": "Kiểm tra Toán và Tiếng Việt lớp 4, 5 vào ngày 15/03/2025. Học sinh ôn tập đầy đủ các bài đã học.", "type": "important", "icon": "📅" },
+    { "id": 2, "title": "Phụ huynh họp đầu học kỳ II", "date": "2025-02-15", "content": "Họp phụ huynh học sinh lớp 4A và 5A vào 8h00 ngày 20/02/2025 tại phòng học.", "type": "normal", "icon": "👨‍👩‍👧" },
+    { "id": 3, "title": "Cuộc thi Toán Tuổi Thơ cấp huyện", "date": "2025-03-10", "content": "Nhà trường chọn học sinh tiêu biểu tham dự cuộc thi Toán Tuổi Thơ cấp huyện.", "type": "event", "icon": "🏆" },
+    { "id": 4, "title": "Thay đổi lịch học tuần 3 tháng 3", "date": "2025-03-05", "content": "Do nhà trường tổ chức hoạt động ngoại khóa, lịch học Toán ngày 12/03 được dời sang ngày 13/03.", "type": "normal", "icon": "🔔" }
   ],
   "schedule": [
     { "day": "Thứ Hai", "lessons": ["Toán lớp 4A", "Tiếng Việt lớp 4A", "Tiếng Việt lớp 5B"] },
